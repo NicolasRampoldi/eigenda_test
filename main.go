@@ -4,10 +4,11 @@ import (
 	"context"
 	"crypto/tls"
 	"fmt"
+	"time"
+
 	"github.com/Layr-Labs/eigenda/encoding/utils/codec"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
-	"time"
 
 	"github.com/Layr-Labs/eigenda/api/grpc/disperser"
 )
@@ -71,5 +72,7 @@ func main() {
 		return
 	}
 
-	fmt.Println(blob)
+	proof := codec.RemoveEmptyByteFromPaddedBytes(blob.Data)
+
+	fmt.Println(proof)
 }
